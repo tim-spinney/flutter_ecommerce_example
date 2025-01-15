@@ -15,7 +15,7 @@ class ProductDetails extends StatelessWidget {
     //final review = databaseAccessor.reviewsRepository.getReviews(product.id);
     return Column(
       children: [
-        ImageCarousel(),
+        ImageCarousel(imageFilenames: product.imageFilenames),
         Text(product.name),
         Text('Price: ${product.formattedPrice}'),
         Text('Release date: ${product.releaseDate}'),

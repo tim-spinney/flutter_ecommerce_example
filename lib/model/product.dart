@@ -9,7 +9,9 @@ class Product {
 
   final List<ProductReview> reviews;
 
+  final List<String> imageFilenames;
+
   String get formattedPrice => '\$${(_priceInCents / 100.0).toStringAsFixed(2)}';
 
-  const Product(this.name, this.description, this.releaseDate, this._priceInCents, this.reviews);
+  const Product(this.name, this.description, this.releaseDate, this._priceInCents, this.reviews, this.imageFilenames);
 }

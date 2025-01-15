@@ -12,7 +12,11 @@ final _sampleData = Product(
   [
     ProductReview('Person #1', 1, 'This product is terrible!'),
     ProductReview('Person #2', 5, 'This product is great!'),
-  ]
+  ],
+  [
+    'assets/product_images/product1image1.jpeg',
+    'assets/product_images/product1image2.jpeg',
+  ],
 );
 
 class ProductDetailPage extends StatelessWidget {
