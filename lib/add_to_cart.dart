@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AddToCart extends StatelessWidget {
   const AddToCart({super.key});
@@ -14,7 +15,13 @@ class AddToCart extends StatelessWidget {
            options like text scaling set in the OS.
          */
         Flexible(
-          child: TextFormField(),
+          child: TextFormField(
+            initialValue: '1',
+            keyboardType: TextInputType.number,
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+            ],
+          ),
         ),
         ElevatedButton(
           onPressed: () {},
