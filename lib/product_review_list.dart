@@ -10,7 +10,9 @@ class ProductReviewList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
+      shrinkWrap: true, // without this we would get layout errors due to ListView and our ancestor
+                        // ScrollView getting into a conflict over element height
       children: reviews.map(
               (productReview) => ProductReviewDetails(review: productReview,)
       ).toList(),
