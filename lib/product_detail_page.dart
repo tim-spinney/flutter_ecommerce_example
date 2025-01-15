@@ -1,16 +1,31 @@
+import 'package:ecommerce/product_details.dart';
+import 'package:ecommerce/model/product_review.dart';
 import 'package:flutter/material.dart';
+
+import 'model/product.dart';
+
+final _sampleData = Product(
+  'Product #1',
+  'Lorem ipsum dolor sit amet, blah blah blah blah blah',
+  DateTime.now(),
+  9999,
+  [
+    ProductReview('Person #1', 1, 'This product is terrible!'),
+    ProductReview('Person #2', 5, 'This product is great!'),
+  ]
+);
 
 class ProductDetailPage extends StatelessWidget {
   const ProductDetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('Product name'),
-        Text('Price: \$99.99'),
-        Text('Release date: 2024-01-14'),
-      ],
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: ProductDetails(product: _sampleData),
+        ),
+      ),
     );
   }
 }
