@@ -7,6 +7,9 @@ class ImageCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if(imageFilenames.isEmpty) {
+      return const SizedBox();
+    }
     return Image(
       image: AssetImage(imageFilenames.first),
     );

@@ -22,7 +22,6 @@ final sampleProducts = [
     DateTime(2024, 1, 1),
     500,
     [
-      ProductReview('Person #1', 3, 'This product is okay.'),
     ],
     [
     ],
