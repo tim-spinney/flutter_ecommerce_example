@@ -11,7 +11,7 @@ class ProductDetailPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: ProductDetails(product: sampleData),
+          child: ProductDetails(product: sampleProducts[0]),
         ),
       ),
     );
