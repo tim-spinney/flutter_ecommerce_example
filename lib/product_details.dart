@@ -11,8 +11,6 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final databaseAccessor = context.read<DatabaseAccessor>();
-    //final review = databaseAccessor.reviewsRepository.getReviews(product.id);
     return Column(
       children: [
         ImageCarousel(imageFilenames: product.imageFilenames),
