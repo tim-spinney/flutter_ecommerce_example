@@ -1,3 +1,4 @@
+import 'package:ecommerce/profile_page.dart';
 import 'package:flutter/material.dart';
 
 import 'product_list.dart';
@@ -7,8 +8,22 @@ class ProductListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: ProductList(),
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.person),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                    builder: (context) => const ProfilePage()
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+      body: const ProductList(),
     );
   }
 }
