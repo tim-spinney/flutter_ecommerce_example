@@ -18,6 +18,8 @@ class _AddressFormState extends State<AddressForm> {
 
   final _zipCodeController = TextEditingController();
 
+  String? _state;
+
   bool _isPrimaryAddress = false;
 
   _onSaveAddress() {
@@ -28,7 +30,7 @@ class _AddressFormState extends State<AddressForm> {
       _line1Controller.text,
       _line2Controller.text,
       _cityController.text,
-      '',
+      _state!,
       _zipCodeController.text,
     );
     _formKey.currentState!.reset();
@@ -58,8 +60,21 @@ class _AddressFormState extends State<AddressForm> {
             decoration: const InputDecoration(labelText: 'City'),
             controller: _cityController,
           ), // city
-          TextFormField(
-            decoration: const InputDecoration(labelText: 'State'),
+          DropdownButtonFormField<String>(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            value: _state,
+            items: _states.map(
+              (state) => DropdownMenuItem<String>(
+                value: state,
+                child: Text(state),
+              ),
+            ).toList(),
+            onChanged: (selection) {
+              setState(() {
+                _state = selection;
+              });
+            },
+            validator: (selection) => selection == null ? 'Select a state.' : null,
           ), // state
           TextFormField(
             decoration: const InputDecoration(labelText: 'ZIP code'),
@@ -84,3 +99,16 @@ class _AddressFormState extends State<AddressForm> {
     );
   }
 }
+
+const List<String> _states = [
+  'Alabama', 'Arizona', 'Arkansas', 'California', 'Colorado',
+  'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Idaho',
+  'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+  'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+  'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada',
+  'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
+  'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon',
+  'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota',
+  'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington',
+  'Washington DC', 'West Virginia', 'Wisconsin', 'Wyoming'
+];
