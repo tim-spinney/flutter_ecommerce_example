@@ -1,3 +1,5 @@
+import 'package:ecommerce/model/CustomizationOptions.dart';
+
 import 'product.dart';
 import 'product_review.dart';
 
@@ -25,5 +27,15 @@ final sampleProducts = [
     ],
     [
     ],
+    customizationOptions: ColorCustomizationOptions([
+      'red',
+      'orange',
+      'yellow',
+      'green',
+      'blue',
+      'purple',
+      'black',
+      'white'
+    ]),
   ),
 ];

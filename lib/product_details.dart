@@ -17,7 +17,7 @@ class ProductDetails extends StatelessWidget {
         Text(product.name),
         Text('Price: ${product.formattedPrice}'),
         Text('Release date: ${product.releaseDate}'),
-        AddToCart(),
+        AddToCart(product: product,),
         ProductReviewList(reviews: product.reviews),
       ],
     );
