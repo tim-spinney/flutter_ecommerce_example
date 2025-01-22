@@ -14,6 +14,8 @@ class _AddressFormState extends State<AddressForm> {
   final _line1Controller = TextEditingController();
   final _line2Controller = TextEditingController();
 
+  final _additionalLineControllers = <TextEditingController>[];
+
   final _cityController = TextEditingController();
 
   final _zipCodeController = TextEditingController();
@@ -36,6 +38,12 @@ class _AddressFormState extends State<AddressForm> {
     _formKey.currentState!.reset();
   }
 
+  _addAddressRow() {
+    setState(() {
+      _additionalLineControllers.add(TextEditingController());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -56,6 +64,15 @@ class _AddressFormState extends State<AddressForm> {
             decoration: const InputDecoration(labelText: 'Address line 2'),
             controller: _line2Controller,
           ), // line 2
+          ..._additionalLineControllers.map(
+              (controller) => TextFormField(
+                controller: controller,
+              )
+          ),
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: _addAddressRow,
+          ),
           TextFormField(
             decoration: const InputDecoration(labelText: 'City'),
             controller: _cityController,
