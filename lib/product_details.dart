@@ -15,6 +15,7 @@ class ProductDetails extends StatelessWidget {
       children: [
         ImageCarousel(imageFilenames: product.imageFilenames),
         Text(product.name),
+        Text(product.description),
         Text('Price: ${product.formattedPrice}'),
         Text('Release date: ${product.releaseDate}'),
         AddToCart(product: product,),
