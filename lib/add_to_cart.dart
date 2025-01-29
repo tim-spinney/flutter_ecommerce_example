@@ -1,4 +1,5 @@
 import 'package:ecommerce/model/CustomizationOptions.dart';
+import 'package:ecommerce/model/shopping_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -6,13 +7,15 @@ import 'model/product.dart';
 
 class AddToCart extends StatefulWidget {
   final Product product;
+  final Function addToCart;
 
-  const AddToCart({super.key, required this.product});
+  const AddToCart({super.key, required this.product, required this.addToCart});
 
   @override createState() => _AddToCartState();
 }
 
 class _AddToCartState extends State<AddToCart> {
+  final _quantityController = TextEditingController(text: '1');
   String? _colorChoice;
 
   @override
@@ -45,15 +48,22 @@ class _AddToCartState extends State<AddToCart> {
              */
             Flexible(
               child: TextFormField(
-                initialValue: '1',
                 keyboardType: TextInputType.number,
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                 ],
+                controller: _quantityController,
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                widget.addToCart(
+                    ProductWithQuantity(
+                      widget.product,
+                      int.parse(_quantityController.text)
+                    )
+                );
+              },
               child: const Text('Add to cart'),
             ),
           ],

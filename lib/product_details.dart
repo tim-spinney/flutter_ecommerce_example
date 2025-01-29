@@ -6,8 +6,9 @@ import 'model/product.dart';
 
 class ProductDetails extends StatelessWidget {
   final Product product;
+  final Function addToCart;
 
-  const ProductDetails({super.key, required this.product});
+  const ProductDetails({super.key, required this.product, required this.addToCart});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class ProductDetails extends StatelessWidget {
         Text(product.description),
         Text('Price: ${product.formattedPrice}'),
         Text('Release date: ${product.releaseDate}'),
-        AddToCart(product: product,),
+        AddToCart(product: product, addToCart: addToCart,),
         ProductReviewList(reviews: product.reviews),
       ],
     );
