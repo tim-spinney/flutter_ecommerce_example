@@ -1,4 +1,6 @@
+import 'package:ecommerce/model/shopping_cart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'product_list_page.dart';
 
@@ -12,14 +14,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
-        useMaterial3: true,
+    return ChangeNotifierProvider(
+      create: (context) => ShoppingCart(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+          useMaterial3: true,
+        ),
+        home: const ProductListPage(),
       ),
-      home: const ProductListPage(),
     );
   }
 }
