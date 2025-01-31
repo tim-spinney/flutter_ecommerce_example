@@ -19,4 +19,15 @@ class ProductWithQuantity {
   final int quantity;
 
   const ProductWithQuantity(this.product, this.quantity);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductWithQuantity &&
+          runtimeType == other.runtimeType &&
+          product == other.product &&
+          quantity == other.quantity;
+
+  @override
+  int get hashCode => product.hashCode ^ quantity.hashCode;
 }

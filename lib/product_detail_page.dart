@@ -1,4 +1,5 @@
 import 'package:ecommerce/model/shopping_cart.dart';
+import 'package:ecommerce/shopping_cart_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'model/product.dart';
@@ -16,6 +17,14 @@ class ProductDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         actions: [
+          IconButton(
+            icon: const Icon(Icons.shopping_cart_outlined),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const ShoppingCartPage()
+              ));
+            },
+          ),
           Text('${shoppingCart.products.length}')
         ],
       ),
