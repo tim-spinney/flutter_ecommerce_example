@@ -4,7 +4,12 @@ import 'package:ecommerce/model/shopping_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 
+import 'add_to_cart_test.mocks.dart';
+
+@GenerateNiceMocks([MockSpec<ShoppingCart>()])
 main() {
   final product = Product(
       'Mechanical pencil, .9mm',
@@ -17,10 +22,11 @@ main() {
 
   testWidgets('pressing button adds product to cart', (tester) async {
     // setup / given / arrange
-    final cart = ShoppingCart();
+    final cart = MockShoppingCart();
+
     // 1. Put the widget on the virtual screen
     await tester.pumpWidget(
-      ChangeNotifierProvider.value(
+      ChangeNotifierProvider<ShoppingCart>.value(
         value: cart,
         child: MaterialApp(
           home: Scaffold(
@@ -36,7 +42,7 @@ main() {
     await tester.tap(buttonFinder);
 
     // validation / then / assert
-    expect(cart.products.length, equals(1));
+    verify(cart.add(ProductWithQuantity(product, 1)));
   });
 
   testWidgets('entering a non-integer into quantity field does nothing', (tester) async {
