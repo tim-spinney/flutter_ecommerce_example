@@ -14,17 +14,33 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ShoppingCart(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
-          useMaterial3: true,
-        ),
-        home: const ProductListPage(),
-      ),
+    return FutureBuilder(
+      future: DefaultAssetBundle.of(context).loadString('assets/sample_data.json'),
+      builder: (context, snapshot) {
+        print('(re)building');
+        print(snapshot.connectionState);
+        if(snapshot.connectionState != ConnectionState.done) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+        // TODO: handle error in case we fail to load data
+        return ChangeNotifierProvider(
+          create: (context) => ShoppingCart(),
+          child: MaterialApp(
+            title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+              useMaterial3: true,
+            ),
+            home: const ProductListPage(),
+          ),
+        );
+      },
     );
+
   }
 }
