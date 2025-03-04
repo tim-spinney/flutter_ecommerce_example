@@ -5,6 +5,8 @@ import 'product.dart';
 
 class ShoppingCart with ChangeNotifier {
   final List<ProductWithQuantity> _products = [];
+  // FirebaseFirestore _firestore;
+  // getCart() => _firestore.collection('shopping_carts').doc(userId)
 
   add(ProductWithQuantity productWithQuantity) {
     _products.add(productWithQuantity);
